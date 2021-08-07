@@ -1,0 +1,73 @@
+{
+  "name": "open-digger",
+  "version": "1.0.0",
+  "description": "OpenDigger for open source data mining",
+  "main": "lib/index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "npm run clean && npm run build && RUN_TYPE=test node src/server/index.js",
+    "ci": "npm run clean && npm run build && RUN_TYPE=ci GITHUB_LOG_URL=$CLICKHOUSE_QUERY_URL node src/server/index.js",
+    "publish": "npm run clean && npm run build && RUN_TYPE=publish GITHUB_LOG_URL=$CLICKHOUSE_QUERY_URL node src/server/index.js",
+    "data-docker": "docker pull docker-hub.x-lab.info/opendigger/github-sample-log:2.202105 && docker start github-sample-log || docker run -d --name github-sample-log -p 8123:8123 -p 9000:9000 --ulimit nofile=262144:262144 docker-hub.x-lab.info/opendigger/github-sample-log:2.202105",
+    "clean": "rm -rf dist",
+    "dev": "webpack serve --open --config ./webpack-config/dev.js",
+    "prod": "webpack --config ./webpack-config/prod.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/X-lab2017/open-digger.git"
+  },
+  "keywords": [
+    "opensource"
+  ],
+  "author": "FrankZhao",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/X-lab2017/open-digger/issues"
+  },
+  "homepage": "https://github.com/X-lab2017/open-digger#readme",
+  "dependencies": {
+    "@apla/clickhouse": "^1.6.4",
+    "js-yaml": "^4.1.0",
+    "pope": "^3.0.0",
+    "request": "^2.88.2",
+    "require-from-string": "^2.0.2",
+    "tslib": "^2.2.0",
+    "typescript": "^4.2.4",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.8",
+    "@babel/preset-env": "^7.13.9",
+    "@babel/preset-react": "^7.12.13",
+    "@types/js-yaml": "^4.0.0",
+    "@types/node": "^14.14.37",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.1",
+    "@types/request": "^2.48.5",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^7.0.0",
+    "css-loader": "^5.1.1",
+    "dateformat": "^4.5.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.2.0",
+    "less": "^4.1.1",
+    "less-loader": "^8.0.0",
+    "pug": "^3.0.2",
+    "pug-loader": "^2.4.0",
+    "style-loader": "^2.0.0",
+    "ts-loader": "^8.0.17",
+    "typescript": "^4.2.2",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.24.3",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2",
+    "webpack-merge": "^5.8.0"
+  }
+}

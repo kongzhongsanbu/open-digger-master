@@ -5,6 +5,7 @@ const { merge } = require('webpack-merge');
 
 const prodConfig = {
   mode: 'production',
+  performance: {hints: false},
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
